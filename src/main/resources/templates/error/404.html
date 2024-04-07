@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Error 404 - Página no encontrada</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!-- Estilos personalizados -->
+        <style>
+            body {
+                background-color: #f8f9fa;
+            }
+
+            .error-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+            }
+
+            .error-content {
+                text-align: center;
+            }
+
+            .error-code {
+                font-size: 10em;
+                color: #dc3545;
+            }
+
+            .error-message {
+                font-size: 1.5em;
+                color: #007bff;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="error-container">
+            <div class="error-content">
+                <h1 class="error-code">404</h1>
+                <p class="error-message">Página no encontrada</p>
+                <a href="index.html" data-th-href="@{/menu}">Volver al inicio</a>
+            </div>
+        </div>
+
+        <!-- Bootstrap JS y dependencias (opcional, pero útil para ciertas funcionalidades de Bootstrap) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js" integrity="sha384-WD5sQNQ8QB2iTC3MQE2DQZ8F2Z6PAP4n+5RIvgKth2Ytr/eF5VtoW8Q5yJAr5ce5" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Acerca</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    </head>
+    <body>
+        <div data-th-replace="layout/layout :: encabezado"></div>
+        <div class="container-fluid">
+            <h1 class="text-center">Acerca De</h1>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Mapa del Sitio</h5>
+                            <ul>
+                                <li><a href="index.html" data-th-href="@{/}">Inicio</a></li>
+                                <li>
+                                    <a href="ofertaeducativa.html" data-th-href="@{/ofertaeducativa}">Oferta Educativa</a>
+                                    <ul>
+                                        <li>Carreras</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="admisiones.html" data-th-href="@{/admisiones}">Admisiones</a>
+                                    <ul>
+                                        <li>Periodos de Admisión</li>
+                                    </ul>
+                                </li>
+                                <li><a href="profesores.html" data-th-href="@{/profesores}">Profesores</a></li>
+                                <li><a href="Directorio.html" data-th-href="@{/Directorio}">Directorio</a></li>
+                                <li>
+                                    <a href="acerca.html" data-th-href="@{/acerca}">Nosotros</a>
+                                    <ul>
+                                        <li>Centro de Ayuda</li>
+                                        <li>Buzón</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Contacto</h5>
+                            <p class="card-text">Centro de ayuda: Encontrarás información a problemas técnicos, preguntas frecuentes con el uso del sistema</p>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                Revisa aqui!
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Buzón de Preguntas</h5>
+                            <p class="card-text">¿Tienes alguna pregunta? ¡Envíanosla!</p>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                                Preguntanos
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Contáctanos</h5>
+                            <div class="card-body">
+                                <p>Necesitas ayuda inmediata? Tienes problemas con la plataforna? Contacta a asoporte técnico para que pueda proporcionarte ayuda</p>
+                                <p><strong>Correo Electrónico:</strong> contacto@freakdevelopmenr.com</p>
+                                <p><strong>Número de Teléfono: +123 456 7890</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para la primera card -->
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel1">Ayuda</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <!-- Segunda columna -->
+                            <div class="list-group" id="nav-tabContent">
+                                <a th:each="pregunta : ${preguntasFrecuentes}" th:id="${'list-' + pregunta.id}"
+                                   th:class="${#strings.equals(#strings.toUpperCase(param.tab), #strings.toUpperCase(pregunta.id))} ? 'list-group-item list-group-item-action flex-column align-items-start active' : 'list-group-item list-group-item-action flex-column align-items-start'"
+                                   data-bs-toggle="list" href="#" role="tab" th:attr="aria-controls=${'list-' + pregunta.id}" th:data-bs-target="${'#list-' + pregunta.id}">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1" th:text="${pregunta.pregunta}"></h5>
+                                    </div>
+                                    <p class="mb-1" th:text="${pregunta.respuesta}"></p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para la nueva card (Buzón) -->
+        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel3">Buzón de Preguntas</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/enviarPregunta" method="post">
+
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="pregunta" class="form-label">Pregunta:</label>
+                                <textarea class="form-control" id="pregunta" name="pregunta" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar Pregunta</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </body>
+</html>

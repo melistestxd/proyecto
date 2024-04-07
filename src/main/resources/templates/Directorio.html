@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Directorio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    </head>
+    <body>
+        
+        
+         <div data-th-replace="layout/layout :: encabezado"></div>
+
+        <div class="container-fluid">
+            <h1 class="text-center">Directorio</h1>
+
+            <table th:if="${directorios != null}" class="table table-hover table-responsive table-bordered">
+                <thead>
+                    <tr class="table-info">
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Correo</th>
+                        <th>Ocupacion</th>
+                        <th>Acciones    </th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr th:each="directorio : ${directorios}">
+                        <td th:text="${directorio.nombre}"></td>
+                        <td th:text="${directorio.apellidos}"></td>
+                        <td th:text="${directorio.correo}"></td>
+                        <td th:text="${directorio.ocupacion}"></td>
+
+
+
+
+                        <td>
+                            <button type="button" class="btn btn-info" th:onclick="ModificarDirectorio('[[(${directorio.id})]]')">
+                                Editar
+                            </button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" th:data-bs-target="'#eliminarModal' + ${directorio.id}">
+                                Eliminar
+                            </button> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-success" onclick="irAgregarDirectorio()">
+                Agregar
+            </button>
+
+            <div th:each="directorio : ${directorios}" th:id="'eliminarModal' + ${directorio.id}" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>¿Estás seguro de eliminar directorio? <strong th:text="${directorio.nombre}"></strong>?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <a th:href="@{/eliminarDirectorio(id=${directorio.id})}" class="btn btn-danger">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+          <script>
+                function irAgregarDirectorio() {
+                    window.location.href = "/agregarDirectorio";
+                }
+                function ModificarDirectorio(iddirectorio) {
+                    window.location.href = "/ModificarDirectorio?id=" + iddirectorio;
+                }
+
+
+            </script>
+         
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    </body>
+</html>

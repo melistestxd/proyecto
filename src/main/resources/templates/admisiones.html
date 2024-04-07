@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Admisiones</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    </head>
+    <body>
+        <div data-th-replace="layout/layout :: encabezado">
+        </div>    
+        <div class="container-fluid">
+            <h1 class="text-center">Admisiones</h1>
+            <table th:if="${datos != null}" class="table table-hover table-responsive table-bordered">
+                <thead>
+                    <tr class="table-info">
+                        <th>Epoca de Admisiones</th>
+                        <th>Detalles</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr th:each="dato : ${datos}">
+                        <td th:text="${dato.nombreAdmision}"></td>
+                        <td>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" th:data-bs-target="'#detalleModal' + ${dato.id}">
+                                Info
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-info" th:onclick="ModificarAdmision('[[(${dato.id})]]')">
+                                Editar
+                            </button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" th:data-bs-target="'#eliminarModal' + ${dato.id}">
+                                Eliminar
+                            </button>      
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-success" onclick="AgregarAdmision()">
+                Agregar
+            </button>
+        </div>
+        <div th:each="dato : ${datos}" th:id="'eliminarModal' + ${dato.id}" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Estás seguro de eliminar la admision <strong th:text="${dato.nombreAdmision}"></strong>?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <a th:href="@{/eliminarAdmision(id=${dato.id})}" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido de la Modal -->
+        <div class="modal fade" th:each="dato : ${datos}" th:id="'detalleModal' + ${dato.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detalles de la Admision</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Aquí puedes mostrar los detalles de la carrera -->
+                        <p th:text="${dato.nombreAdmision}"></p>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" th:checked="${dato.activo}" id="activoCheckbox" disabled>
+                                <label class="form-check-label" for="activoCheckbox">
+                                    Admision disponible
+                                </label>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script>
+            function AgregarAdmision() {
+                window.location.href = "/agregarAdmision";
+            }
+            function ModificarAdmision(idAdmision) {
+                window.location.href = "/modificarAdmision?id=" + idAdmision;
+            }
+
+
+        </script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </body>
+</html>
+

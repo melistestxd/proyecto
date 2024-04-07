@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <title>Modificar Oferta</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div data-th-replace="~{layout/layout :: encabezado}"></div>
+        <div class="container-fluid">
+            <h1 class="text-center">Modificar Oferta</h1>
+            <form action="/guardar-modificacion" method="post" th:action="@{/guardar-modificacion}" th:object="${oferta}">
+                <label for="ofertaEducativa">Nombre de la Oferta</label>
+                <input type="text" class="form-control" id="ofertaEducativa" th:field="*{ofertaEducativa}" required>
+                <div class="invalid-feedback">
+                    Por favor, ingresa el nombre de la oferta educativa.
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" th:field="*{activo}" id="activoCheckbox" />
+                    <label class="form-check-label" for="activoCheckbox">Oferta educativa</label>
+                    <small id="emailHelp" class="form-text text-muted">*Si el cuadro check está marcado, es porque la oferta educativa está activa</small>
+                </div>
+
+                <input type="hidden" th:field="*{id}" />
+
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </form>
+
+        </div>
+    </body>
+</html>
