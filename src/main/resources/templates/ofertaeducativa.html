@@ -19,7 +19,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
             <table th:if="${carreras != null}" class="table table-hover table-responsive table-bordered">
                 <thead>
-                    <tr class="table-info">
+                    <tr class="table-secondary">
                         <th>Carreras</th>
                         <th>Detalles</th>
                         <th>Acciones</th>
@@ -29,12 +29,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <tr th:each="carrera : ${carreras}">
                         <td th:text="${carrera.ofertaEducativa}"></td>
                         <td>
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" th:data-bs-target="'#detalleModal' + ${carrera.id}">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:data-bs-target="'#detalleModal' + ${carrera.id}">
                                 Info
                             </button>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-info" th:onclick="ModificarOferta('[[(${carrera.id})]]')">
+                            <button type="button" class="btn btn-primary" th:onclick="ModificarOferta('[[(${carrera.id})]]')">
                                 Editar
                             </button>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" th:data-bs-target="'#eliminarModal' + ${carrera.id}">

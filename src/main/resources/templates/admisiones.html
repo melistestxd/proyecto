@@ -17,7 +17,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <h1 class="text-center">Admisiones</h1>
             <table th:if="${datos != null}" class="table table-hover table-responsive table-bordered">
                 <thead>
-                    <tr class="table-info">
+                    <tr class="table-secondary">
                         <th>Epoca de Admisiones</th>
                         <th>Detalles</th>
                         <th>Acciones</th>
@@ -27,12 +27,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <tr th:each="dato : ${datos}">
                         <td th:text="${dato.nombreAdmision}"></td>
                         <td>
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" th:data-bs-target="'#detalleModal' + ${dato.id}">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:data-bs-target="'#detalleModal' + ${dato.id}">
                                 Info
                             </button>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-info" th:onclick="ModificarAdmision('[[(${dato.id})]]')">
+                            <button type="button" class="btn btn-primary" th:onclick="ModificarAdmision('[[(${dato.id})]]')">
                                 Editar
                             </button>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" th:data-bs-target="'#eliminarModal' + ${dato.id}">

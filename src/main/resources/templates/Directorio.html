@@ -21,7 +21,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
             <table th:if="${directorios != null}" class="table table-hover table-responsive table-bordered">
                 <thead>
-                    <tr class="table-info">
+                    <tr class="table-secondary">
                         <th>Nombre</th>
                         <th>Apellidos</th>
                         <th>Correo</th>
@@ -40,7 +40,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
 
                         <td>
-                            <button type="button" class="btn btn-info" th:onclick="ModificarDirectorio('[[(${directorio.id})]]')">
+                            <button type="button" class="btn btn-primary" th:onclick="ModificarDirectorio('[[(${directorio.id})]]')">
                                 Editar
                             </button>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" th:data-bs-target="'#eliminarModal' + ${directorio.id}">
