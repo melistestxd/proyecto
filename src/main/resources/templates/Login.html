@@ -1,80 +1,27 @@
-<!DOCTYPE html>
-<html lang="es">
+
+ 
+ 
+ <!DOCTYPE html>
+<html>
     <head>
+        <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login - Uteq</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-        <!-- Agrega tu hoja de estilos personalizada -->
-        <link rel="stylesheet" href="styles.css">
-        <style>
-            body {
-                background-color: #f8f9fa;
-            }
-            .login-container {
-                max-width: 400px;
-                margin: 100px auto;
-                padding: 20px;
-                border-radius: 10px;
-                background-color: #fff;
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            }
-            .login-container h2 {
-                text-align: center;
-                margin-bottom: 20px;
-            }
-            .form-floating {
-                margin-bottom: 20px;
-            }
-            .btn-register {
-                margin-bottom: 10px;
-            }
-            .btn-forgot-password {
-                margin-top: 10px;
-            }
-        </style>
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+
     </head>
     <body>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="login-container">
-                        <h2>Login Uteq</h2>
-
-                        <form id="loginForm" th:action="@{/login}" method="post" onsubmit="return validateForm()">
-                            <div class="form-floating">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Correo electrónico" required>
-                                <label for="email">Correo electrónico</label>
-                            </div>
-                            <div class="form-floating mb-4">
-                                <input type="password" class="form-control" id="password" name="contraseña" placeholder="Contraseña" required>
-                                <label for="password">Contraseña</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary d-block w-100 mb-3">Iniciar sesión</button>
-                            <a href="Registro.html" data-th-href="@{/Registro}" class="btn btn-outline-secondary btn-register d-block w-100">Registrarse</a>
-                            <a href="Recuperacion.html" data-th-href="@{/Recuperacion}" class="btn btn-link btn-forgot-password text-center">¿Olvidaste tu contraseña?</a>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            function validateForm() {
-                var email = document.getElementById("email").value;
-                var password = document.getElementById("password").value;
-
-                if (email.trim() === "" || password.trim() === "") {
-                    alert("Por favor, complete todos los campos.");
-                    return false;
-                }
-
-                return true;
-            }
-        </script>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <h1>Acceso al sistema</h1>
+        <form method="post" data-th-action="@{/login}">
+            <label for="username">Usuario:</label>
+            <input type="text" name="username" id="username"/>
+            <br>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password"/>
+            <br>
+            <input class="btn btn-primary" type="submit" value="Ingresar"/>
+        </form>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     </body>
 </html>

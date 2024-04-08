@@ -24,10 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- *
- * @author aguil
- */
+
 @Controller
 public class ControladorProfesores {
 
